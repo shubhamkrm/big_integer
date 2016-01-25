@@ -6,9 +6,8 @@ This program lets you use very large integers in your program as easily as you w
 Currently, it supports assignment, addition, multiplication and printing with a single cout statement.
 
 TODO : Add support for subtraction and division
-TODO : Adding support for int + big_integer and similar multiplication operation
 
-The program works fine as is as on 24 January 2016
+The program works fine as is as on 26 January 2016
 */
 #ifndef BIG_INTEGERS_H
 #define BIG_INTEGERS_H
@@ -19,24 +18,29 @@ using namespace std;
 
 class big_integer
 {
-	vector <int> number;
+	vector <int> number;						//This vector stores the number in a reverse order, i.e, the unit's place is stored at index 0
 
 	public:
 	
-	big_integer();
-	big_integer(vector <int> num);
+	big_integer();							//The default constructor. Initializes the vector with null
+	big_integer(vector <int> num);					//I don't really expect users to use this constructor, but just in case
 
+	//getter function for the private field `number`
 	vector <int> get_number() const 
 	{
 		return number;
 	}
 
+	//setter function for the private field `number`, though the use of '=' is recommended to avoid any reversal problems
 	void set_number(vector <int> num)
 	{
 		number = num;
 	}
 
-	void push_back(int n);
+	/*
+	The next three functions are there to make my life easier, but I have made them public to allow the user to manipulate the original vector
+	*/
+	void push_back(int n);						//adds a character to the end of the vector (The beginning of the number)
 	int size() const;
 	
 	int& operator[](int i);
@@ -53,9 +57,11 @@ class big_integer
 
 	big_integer operator+(int num2) const;
 	big_integer operator+(big_integer &num2) const;   
+	friend big_integer operator+(int num1, big_integer &num2);
 
 	big_integer operator*(int num2) const;
 	big_integer operator*(big_integer &num2) const;   
+	friend big_integer operator*(int num1, big_integer &num2);
 
 	friend ostream& operator<<(ostream &out, big_integer &num);
 };

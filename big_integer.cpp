@@ -102,6 +102,11 @@ big_integer big_integer::operator+(big_integer &num2) const
 	return sum;
 }	
 
+big_integer operator+(int num1, big_integer &num2)
+{
+	return num2 + num1;
+}
+
 //TODO: implement the following functions later using Karatsuba method
 big_integer big_integer::operator*(int num2) const
 {
@@ -132,6 +137,12 @@ big_integer big_integer::operator*(big_integer &num2) const
 	}
 	return product;
 }
+
+big_integer operator*(int num1, big_integer &num2)
+{
+	return num2 * num1;
+}
+
 
 ostream& operator<<(ostream &out,big_integer &num)
 {
