@@ -74,13 +74,13 @@ The code is mostly self explanatory, I hope.
 */
 big_integer big_integer::operator+(int num2) const
 {
-	big_integer sum;
-	int carry = num2;
+	big_integer sum(number);
+	int carry = num2, i;
 
-	for (int i=0;i<number.size() && carry>0;++i)
+	for (i=0;i<number.size() && carry>0;++i)
 	{
 		int temp = number[i]+carry;
-		sum.push_back(temp%10);
+		sum[i] = temp%10;
 		carry = temp/10;
 	}
 	while (carry>0)
@@ -93,34 +93,11 @@ big_integer big_integer::operator+(int num2) const
 
 big_integer big_integer::operator+(big_integer &num2) const
 {
-	big_integer sum;
-	const big_integer *larger;
-	int i=0, carry = 0;
-	if  (number.size()>=num2.size())
-		larger = this;
-	else
-		larger = &num2;
-
-//TODO : Modify this method to use the overloaded + operator
-	for (i=0;i<number.size() && i<num2.size();++i)
+	big_integer sum(number);
+	for (int i=0;i<num2.size();++i)
 	{
-		int temp = number[i] + num2[i] + carry;
-		sum.push_back(temp%10);
-		carry = temp / 10;
-	}
-
-	while (i<larger->size())
-	{
-		int temp = larger->number[i] + carry;
-		sum.push_back(temp%10);
-		carry=temp / 10;
-		++i;
-	}
-
-	while (carry > 0)
-	{
-		sum.push_back(carry%10);
-		carry/=10;
+		int place_value = num2[i] *  pow(10, i);
+		sum = sum + place_value;
 	}
 	return sum;
 }	
