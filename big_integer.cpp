@@ -3,11 +3,14 @@
 
 big_integer::big_integer()
 {
+	number.push_back(0);
+	isNegative = false;
 }
 
 big_integer::big_integer(vector <int> num)
 {
 	number = num;
+	isNegative = false;
 }
 /*
 ********************************************************************************

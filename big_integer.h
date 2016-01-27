@@ -18,12 +18,16 @@ using namespace std;
 
 class big_integer
 {
-	vector <int> number;						//This vector stores the number in a reverse order, i.e, the unit's place is stored at index 0
+	//This vector stores the number in a reverse order, i.e, the unit's place is stored at index 0
+	vector <int> number;
+	bool isNegative;
 
 	public:
-	
-	big_integer();							//The default constructor. Initializes the vector with null
-	big_integer(vector <int> num);					//I don't really expect users to use this constructor, but just in case
+
+	//The default constructor. Initializes the vector with null
+	big_integer();
+	//I don't really expect users to use this constructor, but just in case
+	big_integer(vector <int> num);
 
 	//getter function for the private field `number`
 	vector <int> get_number() const 
@@ -40,13 +44,15 @@ class big_integer
 	/*
 	The next three functions are there to make my life easier, but I have made them public to allow the user to manipulate the original vector
 	*/
-	void push_back(int n);						//adds a character to the end of the vector (The beginning of the number)
+	
+	//adds a character to the end of the vector (The beginning of the number)
+	void push_back(int n);
 	int size() const;
 	
 	int& operator[](int i);
-	
+
 	/*Note : Though the overloaded = works fine, it cannot be used for initialisation.
-		 It must be initialised first using a constructor (default works fine) and then a value should be assigned to it
+	It must be initialised first using a constructor (default works fine) and then a value should be assigned to it
 		
 		For example : big_integer a =  10; //this code does not work
 		Use instead : big_integer a;
