@@ -3,7 +3,6 @@
 
 big_integer::big_integer()
 {
-	number.push_back(0);
 	isNegative = false;
 }
 
@@ -144,6 +143,37 @@ big_integer big_integer::operator*(big_integer &num2) const
 big_integer operator*(int num1, big_integer &num2)
 {
 	return num2 * num1;
+}
+
+/*
+********************************************************************************
+
+			IMPLEMENTATION OF SHORTHANDS
+********************************************************************************
+*/
+
+big_integer big_integer::operator+=(int num2)
+{
+	*this = *this + num2;
+	return *this;
+}
+
+big_integer big_integer::operator+=(big_integer num2)
+{
+	*this = *this + num2;
+	return *this;
+}
+
+big_integer big_integer::operator*=(int num2)
+{
+	*this = *this * num2;
+	return *this;
+}
+
+big_integer big_integer::operator*=(big_integer num2)
+{
+	*this = *this * num2;
+	return *this;
 }
 
 
