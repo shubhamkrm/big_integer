@@ -69,11 +69,19 @@ class big_integer
 	big_integer operator*(big_integer &num2) const;   
 	friend big_integer operator*(int num1, big_integer &num2);
 
+	big_integer operator-(int num2) const;
+	big_integer operator-(big_integer &num2) const;
+	friend big_integer operator-(int num1, big_integer num2);
+
 	big_integer operator+=(int num2);
-	big_integer operator+=(big_integer num2);
+	big_integer operator+=(big_integer &num2);
 
 	big_integer operator*=(int num2);
-	big_integer operator*=(big_integer num2);
+	big_integer operator*=(big_integer &num2);
+
+	friend bool operator<(big_integer &num1, big_integer &num2);
+	friend bool operator>(big_integer &num1, big_integer &num2);
+	friend bool operator==(big_integer &num1, big_integer &num2);
 
 	friend ostream& operator<<(ostream &out, big_integer &num);
 };

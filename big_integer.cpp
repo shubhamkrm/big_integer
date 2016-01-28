@@ -144,12 +144,24 @@ big_integer operator*(int num1, big_integer &num2)
 {
 	return num2 * num1;
 }
+/*
+--------------------------------------------------------------------------------
+	
+		IMPLEMENTATION OF SUBSTRACTION OPERATOR
+--------------------------------------------------------------------------------
+*/
+
+big_integer big_integer::operator-(big_integer &num2) const
+{
+	big_integer difference, larger, smaller;
+	return difference;
+}
 
 /*
-********************************************************************************
+--------------------------------------------------------------------------------
 
 			IMPLEMENTATION OF SHORTHANDS
-********************************************************************************
+--------------------------------------------------------------------------------
 */
 
 big_integer big_integer::operator+=(int num2)
@@ -158,7 +170,7 @@ big_integer big_integer::operator+=(int num2)
 	return *this;
 }
 
-big_integer big_integer::operator+=(big_integer num2)
+big_integer big_integer::operator+=(big_integer &num2)
 {
 	*this = *this + num2;
 	return *this;
@@ -170,12 +182,49 @@ big_integer big_integer::operator*=(int num2)
 	return *this;
 }
 
-big_integer big_integer::operator*=(big_integer num2)
+big_integer big_integer::operator*=(big_integer &num2)
 {
 	*this = *this * num2;
 	return *this;
 }
+/*
+--------------------------------------------------------------------------------
 
+		IMPLEMENTATION OF COMPARISON OPERATORS
+--------------------------------------------------------------------------------
+*/
+bool operator<(big_integer &num1, big_integer &num2)
+{
+	if (num1.size()<num2.size())
+		return true;
+	if (num1.size()>num2.size())
+		return false;
+	if (num1.number.back()<num2.number.back())
+		return true;
+	return false;
+}
+
+bool operator>(big_integer &num1, big_integer &num2)
+{
+	if (num1.size()>num2.size())
+		return true;
+	if (num1.size()<num2.size())
+		return false;
+	if (num1.number.back()>num2.number.back())
+		return true;
+	return false;
+}
+
+bool operator==(big_integer &num1, big_integer &num2)
+{
+	if (num1.size()<num2.size())
+		return false;
+	if (num1.size()>num2.size())
+		return false;
+	if (num1.number.back()==num2.number.back())
+		return true;
+	return false;
+}
 
 ostream& operator<<(ostream &out,big_integer &num)
 {
